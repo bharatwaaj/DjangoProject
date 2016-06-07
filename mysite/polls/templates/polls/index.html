@@ -1,0 +1,28 @@
+{% extends 'polls/base.html' %}
+
+{% block main_content %}
+
+<h1>Choose a question !</h1>
+{% if latest_questions %}
+    <ul>
+        <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Questions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in latest_questions %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href= {% url "polls:detail" question.id %} ><b>{{question.question_text}}</b></a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <input type="button" class="btn btn-success" value="Add a new Question"/>
+{% else %}
+    <p> Add some questions ! </p>
+{% endif %}
+{% endblock %}
